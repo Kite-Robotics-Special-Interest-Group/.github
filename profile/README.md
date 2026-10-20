@@ -38,6 +38,7 @@
 | 仓库 | 说明 | 负责方向 | 可见性 |
 | --- | --- | --- | --- |
 | [Kite](https://github.com/Kite-Robotics-Special-Interest-Group/Kite) | 端侧 VLA 模型与运行时（模型、量化、部署、ASR） | 模型与推理 | 私有 |
+| [Kite-Open](https://github.com/Kite-Robotics-Special-Interest-Group/Kite-Open) | 公开镜像：soft prompt 工具、运行时抽象、容器与文档（不含权重与厂商部署细节） | 模型与推理 | **公开** |
 
 ## 通用约定（所有仓库适用）
 
@@ -53,6 +54,7 @@
 
 | 你的情况 | 从这里开始 |
 | --- | --- |
+| **外部访客 / 只想看可公开部分** | **[Kite-Open](https://github.com/Kite-Robotics-Special-Interest-Group/Kite-Open)**（公开镜像：soft prompt 工具、运行时抽象、容器与文档） |
 | **完全零基础**（第一次用 GitHub） | **[零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md)**（1–2 小时：装工具、克隆、提交、发 PR、常见报错） |
 | 模型 / 推理 / 部署 | [从零教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md) + [M0 复现清单](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/reproduce-m0.md) |
 | 电控 / 机械 / 感知 | 先读 [零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md) 与 [贡献规范](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)；对应仓库建立后用 [复现文档模板](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-template.md) 写自己的上手指南 |
