@@ -7,8 +7,16 @@
 
 ## 1. 一个改动从提出到合并
 
-```
-挂 Issue → 领 Issue + 建分支 → 开发自测 → 提 PR → Review → Squash 合并 → 删分支
+```mermaid
+flowchart LR
+    I["挂 Issue"] --> C["领 Issue<br/>Assignees 选自己"]
+    C --> B["建分支<br/>类型/编号-简述"]
+    B --> D["开发 + 自测"]
+    D --> P["推送 + 提 PR<br/>Closes #编号"]
+    P --> R{"Review<br/>≥1 Approve 且 CI 绿勾"}
+    R -- "通过" --> M["Squash and merge"]
+    R -- "需修改" --> D
+    M --> X["删分支 + 同步 main"]
 ```
 
 1. **挂 Issue**：在对应仓库用「任务」或「缺陷」模板；标题写清子系统与对象，例如 `[ec] 电机驱动加入过流保护`
