@@ -3,7 +3,8 @@
 > **面向**：没接触过 Linux 的成员（Windows 用户）。
 > **目标**：装好 WSL、会在 Windows ↔ Linux 之间切换、知道项目文件放哪、能跑 Python 与脚本。
 > **什么时候需要**：工具只支持 Linux（某些导出/编译脚本）、或想和板端（Linux）保持一致的命令。
-> **不需要的情况**：项目镜像/容器能解决、只改文档图纸、或只在 Windows 上做 GPU 训练。**Docker 优先**。
+> **和 Docker 的关系**：Windows 上的 Docker Desktop **依赖 WSL2**——用 Docker 就要装 WSL2（但不必进 Ubuntu 手动操作）。
+> 本文讲的是**第二种用法**：直接进入 Ubuntu 装环境、跑脚本（工具只支持 Linux 或要与板端命令一致时）。
 
 ---
 
