@@ -41,7 +41,7 @@
 
 ## 通用约定（所有仓库适用）
 
-1. **每个仓库必须有 README**：目标、负责人、当前状态、快速开始、相关文档链接。
+1. **每个仓库必须有 README**：目标、负责人、当前状态、**复现方式**（见 [如何写复现文档](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-guide.md)）、快速开始、相关文档链接。
 2. **接口变更要跨组对齐**：机械接口尺寸、电控通信协议、模型输入输出契约——任何变更都要在 PR 里写清影响面，并请对应方向负责人评审。
 3. **Issue / PR 走模板**：组织级模板在本仓库提供（各仓库可覆盖）；流程为「分支 → PR → 至少 1 人 Approve + CI 绿勾 → Squash 合并」，不直接推 `main`。
 4. **大文件不进 Git**：模型权重、数据集、视频、超大 CAD/加工文件走网盘；小而必须版本化的二进制用 Git LFS。
@@ -51,10 +51,12 @@
 
 ## 快速开始
 
-| 你的方向 | 从这里开始 |
+| 你的情况 | 从这里开始 |
 | --- | --- |
-| 模型 / 推理 / 部署 | [Kite 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md)（从零到板端跑通） |
-| 电控 / 机械 / 感知 | 对应仓库建立后补「新人上手指南」；在此之前先读本页「通用约定」与 [CONTRIBUTING.md](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md) |
+| **完全零基础**（第一次用 GitHub） | **[零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md)**（1–2 小时：装工具、克隆、提交、发 PR、常见报错） |
+| 模型 / 推理 / 部署 | [从零教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md) + [M0 复现清单](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/reproduce-m0.md) |
+| 电控 / 机械 / 感知 | 先读 [零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md) 与 [贡献规范](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)；对应仓库建立后用 [复现文档模板](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-template.md) 写自己的上手指南 |
+| 要写文档 / 做交接 | [如何写复现文档](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-guide.md)（含软件/电控/机械三类写法） |
 | 工具 / 环境 | Docker 优先（跨设备一致）；Git 入门见 [Kite 的 Git 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/git-guide.md) |
 
 ## 加入与分工
