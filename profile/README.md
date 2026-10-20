@@ -15,6 +15,12 @@
 本组织把「模型算法 → 电控 → 机械结构 → 整机联调」放在同一套仓库与流程下协作。
 组织内会有多个子系统仓库，**不只有模型与推理**；各组在自己的仓库里开发，跨组接口在组织层对齐。
 
+## 进展与里程碑
+
+| 日期 | 里程碑 | 摘要 |
+| --- | --- | --- |
+| 2026-10-16 | **M0 · 模型首次上板跑通** | X-VLA 的 `.hmm` 在 **飞腾 D3000M + 后摩 M50** 上首次真机推理：**236 ms/动作（4.23 Hz，约 105× CPU 基线）**；同日板端中文 ASR（Qwen3-ASR + llama.cpp，纯 CPU）跑通 · [记录 Issue](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/issues/8) · [预发布 v0.1.0-m50-first-run](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/releases/tag/v0.1.0-m50-first-run) |
+
 ## 子系统与仓库
 
 | 方向 | 典型内容 | 仓库命名建议 | 状态 |
