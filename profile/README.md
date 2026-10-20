@@ -4,74 +4,84 @@
 
 **机器人系统的跨学科协作组织**
 
-模型与推理 · 电控 · 机械 · 感知与数据 · 平台工具 —— 从算法到整机。
+模型与推理 · 电控 · 机械 · 感知与数据 · 平台工具
 
 </div>
 
 ---
 
-## 组织定位
+## 我们在做什么
 
-本组织把「模型算法 → 电控 → 机械结构 → 整机联调」放在同一套仓库与流程下协作。
-组织内会有多个子系统仓库，**不只有模型与推理**；各组在自己的仓库里开发，跨组接口在组织层对齐。
+我们想打通一条完整的链路：**让模型看懂画面、听懂指令、在真实的机器人上做出动作。**
 
-> 愿景：这里可以是很多同学**具身智能的起点**——不要求你先会什么，只要求你愿意动手。
-> 我们希望每一届都能接着上一届的文档和代码往下走，而不是从零重来。
+现在这条链路上有几件正在做的事：
+
+- **把 VLA 模型放到端侧**：X-VLA 的权重经过融合、fp16、量化、编译，跑在一块没有独立显卡的板子上
+  （最近一次实测：端到端 **236 ms / 动作**，约为主机 CPU 基线的 105 倍）
+- **让机器人听懂人话**：板端中文语音识别，纯 CPU 运行
+- **把跨专业的接口对齐**：结构尺寸、通信协议、模型输入输出，谁改了什么、影响谁，都写在仓库里
+
+组织里不只有模型和推理：电控、机械、感知、工具都是一等公民，各自有仓库、各自的负责人。
+
+> 这里也可以是很多人做具身智能的第一站。不要求你先会什么，愿意动手就行；
+> 文档和代码尽量留给下一届能用，而不是每次从零开始。
 
 ## 进展与里程碑
 
 | 日期 | 里程碑 | 摘要 |
 | --- | --- | --- |
-| 2026-10-16 | **M0 · 模型首次上板跑通** | X-VLA 的 `.hmm` 在 **飞腾 D3000M + 后摩 M50** 上首次真机推理：**236 ms/动作（4.23 Hz，约 105× CPU 基线）**；同日板端中文 ASR（Qwen3-ASR + llama.cpp，纯 CPU）跑通 · [记录 Issue](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/issues/8) · [预发布 v0.1.0-m50-first-run](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/releases/tag/v0.1.0-m50-first-run) |
+| 2026-10-16 | **M0 · 模型首次上板跑通** | X-VLA 的 `.hmm` 在 **飞腾 D3000M + 后摩漫界 M50** 上完成首次真机推理：**236 ms / 动作（4.23 Hz，约 105× CPU 基线）**；同日板端中文 ASR（Qwen3-ASR + llama.cpp）跑通 · [记录](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/issues/8) · [预发布](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/releases/tag/v0.1.0-m50-first-run) |
+
+> 新里程碑的格式照着这一行写就行：日期、一句结论、可复现的数字、链接。
 
 ## 子系统与仓库
 
 | 方向 | 典型内容 | 仓库命名建议 | 状态 |
 | --- | --- | --- | --- |
-| 模型与推理 | VLA 模型、端侧运行时、量化与部署 | `kite`（主仓库）、`*-runtime` | ✅ 进行中 |
+| 模型与推理 | VLA 模型、端侧运行时、量化与部署 | `kite`（主仓库）、`*-runtime` | 进行中 |
 | 电控 | 主控固件、电机/传感器驱动、总线与通信协议 | `ec-*` | 待建立 |
 | 机械 | 结构设计、CAD、装配与加工图 | `mech-*` | 待建立 |
 | 感知与数据 | 相机与标定、数据采集/标注/清洗 | `perception-*`、`data-*` | 待建立 |
 | 平台与工具 | 仿真、测试台、CI、公共脚本与文档 | `tools-*`、`docs-*` | 待建立 |
 
-> 新仓库请按上面前缀命名（小写 + 短横线），并在下方「仓库索引」登记一行。
+新仓库请按上面前缀命名（小写 + 短横线），并在下面的索引里补一行。
 
 ## 仓库索引
 
-| 仓库 | 说明 | 负责方向 | 可见性 |
+| 仓库 | 说明 | 方向 | 可见性 |
 | --- | --- | --- | --- |
 | [Kite](https://github.com/Kite-Robotics-Special-Interest-Group/Kite) | 端侧 VLA 模型与运行时（模型、量化、部署、ASR） | 模型与推理 | 私有 |
-| [Kite-Open](https://github.com/Kite-Robotics-Special-Interest-Group/Kite-Open) | 公开镜像：soft prompt 工具、运行时抽象、容器与文档（不含权重与厂商部署细节） | 模型与推理 | **公开** |
+| [Kite-Open](https://github.com/Kite-Robotics-Special-Interest-Group/Kite-Open) | 公开镜像：soft prompt 工具、运行时抽象、容器与文档 | 模型与推理 | 公开 |
 
-## 通用约定（所有仓库适用）
-
-1. **每个仓库必须有 README**：目标、负责人、当前状态、**复现方式**（见 [如何写复现文档](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-guide.md)）、快速开始、相关文档链接。
-2. **接口变更要跨组对齐**：机械接口尺寸、电控通信协议、模型输入输出契约——任何变更都要在 PR 里写清影响面，并请对应方向负责人评审。
-3. **Issue / PR 走模板**：组织级模板在本仓库提供（各仓库可覆盖）；流程为「分支 → PR → 至少 1 人 Approve + CI 绿勾 → Squash 合并」，不直接推 `main`。
-4. **大文件不进 Git**：模型权重、数据集、视频、超大 CAD/加工文件走网盘；小而必须版本化的二进制用 Git LFS。
-5. **硬件也版本化**：结构 / PCB / 固件 / 模型各自的发布用 tag + CHANGELOG 记录；同一阶段的三件套（结构版本、电控版本、固件/模型版本）在对应仓库 `docs/` 里维护一张**兼容性表**。
-6. **文档中文、代码标识符英文**；commit message 用 `feat:/fix:/docs:/refactor:/test:/chore:`。
-7. **默认私有**：公开任何内容（代码、图纸、数据、方案）前先问管理员。
-
-## 快速开始
+## 怎么开始
 
 | 你的情况 | 从这里开始 |
 | --- | --- |
-| **外部访客 / 只想看可公开部分** | **[Kite-Open](https://github.com/Kite-Robotics-Special-Interest-Group/Kite-Open)**（公开镜像：soft prompt 工具、运行时抽象、容器与文档） |
-| **完全零基础**（第一次用 GitHub） | **[零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md)**（1–2 小时：装工具、克隆、提交、发 PR、常见报错） |
-| 模型 / 推理 / 部署 | [从零教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md) + [M0 复现清单](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/reproduce-m0.md) |
-| 电控 / 机械 / 感知 | 先读 [零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md) 与 [贡献规范](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)；对应仓库建立后用 [复现文档模板](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-template.md) 写自己的上手指南 |
-| 要写文档 / 做交接 | [如何写复现文档](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-guide.md)（含软件/电控/机械三类写法） |
-| 工具 / 环境 | Docker 优先（跨设备一致）；Git 入门见 [Kite 的 Git 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/git-guide.md)；Windows 上要 Linux 工具见 [WSL 入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/wsl.md) |
+| 外部访客，只想看可公开的部分 | [Kite-Open](https://github.com/Kite-Robotics-Special-Interest-Group/Kite-Open) |
+| 第一次用 GitHub | [零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md)（装工具、克隆、提交、发 PR） |
+| 模型 / 推理 / 部署 | [从零教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md) · [M0 复现清单](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/reproduce-m0.md) |
+| 电控 / 机械 / 感知 | 先读 [零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md) 与 [贡献规范](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)；新仓库用 [复现文档模板](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-template.md) 起手 |
+| 要写文档 / 做交接 | [如何写复现文档](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-guide.md) |
+| 工具与环境 | Docker 优先（Windows 上依赖 WSL2，见 [WSL 入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/wsl.md)） |
 
-## 加入与分工
+## 协作约定
 
-1. 联系管理员 [@muzirin](https://github.com/muzirin)，说明你的方向与可投入时间
-2. 加入对应的 GitHub Team（如 `model` / `ec` / `mech`），获得相应仓库权限
-3. 到对应仓库的 Issues 领任务（新手优先 `good first issue`）
+1. **每个仓库都要有 README**：目标、负责人、当前状态、复现方式、快速开始。
+2. **接口变更要跨组对齐**：机械尺寸、通信协议、模型输入输出——PR 里写清影响面，并请对应方向负责人看过。
+3. **Issue / PR 走模板**：分支 → PR → 至少 1 人 Approve + CI 绿勾 → Squash 合并，不直接推 `main`。
+4. **大文件不进 Git**：权重、数据集、视频、超大 CAD/加工文件走网盘；小而必须版本化的二进制用 Git LFS。
+5. **硬件也版本化**：结构 / PCB / 固件 / 模型各自打 tag，并维护一张各版本能否装在一起的兼容性表。
+6. **文档中文、代码标识符英文**；commit 用 `feat:/fix:/docs:/refactor:/test:/chore:`。
+7. **默认私有**：公开任何内容（代码、图纸、数据、方案）前先问管理员。
+
+## 加入
+
+1. 联系管理员 [@muzirin](https://github.com/muzirin)，说明方向和能投入的时间
+2. 加入对应的 GitHub Team（`model` / `ec` / `mech` 等），获得仓库权限
+3. 到仓库的 Issues 领任务，新手优先 `good first issue`
 4. 第一次提交前读一遍 [CONTRIBUTING.md](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)
 
 ## 组织维护
 
-- 管理员：[@muzirin](https://github.com/muzirin)
-- 组织级公共文件（本主页、Issue/PR 模板、协作规范、行为准则）都在 **[.github](https://github.com/Kite-Robotics-Special-Interest-Group/.github)** 仓库维护
+组织级公共文件（本主页、Issue/PR 模板、协作规范、行为准则）都在
+[.github](https://github.com/Kite-Robotics-Special-Interest-Group/.github) 仓库维护。
