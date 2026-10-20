@@ -1,67 +1,64 @@
 <div align="center">
 
-# Kite Robotics SIG
+# Kite Robotics Special Interest Group
 
-**端侧轻量级 VLA（Vision-Language-Action）模型与运行时**
+**机器人系统的跨学科协作组织**
 
-让多模态机器人策略模型真正跑在资源受限的边缘设备上。
+模型与推理 · 电控 · 机械 · 感知与数据 · 平台工具 —— 从算法到整机。
 
 </div>
 
 ---
 
-## 我们在做什么
+## 组织定位
 
-| 方向 | 内容 |
-| --- | --- |
-| 模型端侧化 | X-VLA 单本体固化（soft prompt 融合）→ fp16 → 固定形状 ONNX |
-| 芯片部署 | 后摩漫界 M50：HMQuantool 量化 → TCIM 编译 `.hmm` → `tcim_lite` 推理（实测端到端 **236 ms / 4.2 Hz**） |
-| 语音交互 | 板端中文 ASR：**Qwen3-ASR + llama.cpp**（CPU），量化/线程调优结论已记录 |
-| 工程化 | 容器化开发环境、可复现测试与 CI、面向新手的 Git / 环境 / 部署教程 |
+本组织把「模型算法 → 电控 → 机械结构 → 整机联调」放在同一套仓库与流程下协作。
+组织内会有多个子系统仓库，**不只有模型与推理**；各组在自己的仓库里开发，跨组接口在组织层对齐。
 
-## 仓库
+## 子系统与仓库
 
-| 仓库 | 说明 |
-| --- | --- |
-| [Kite](https://github.com/Kite-Robotics-Special-Interest-Group/Kite) | 主仓库：模型、运行时、脚本、文档（**私有**，需管理员邀请） |
+| 方向 | 典型内容 | 仓库命名建议 | 状态 |
+| --- | --- | --- | --- |
+| 模型与推理 | VLA 模型、端侧运行时、量化与部署 | `kite`（主仓库）、`*-runtime` | ✅ 进行中 |
+| 电控 | 主控固件、电机/传感器驱动、总线与通信协议 | `ec-*` | 待建立 |
+| 机械 | 结构设计、CAD、装配与加工图 | `mech-*` | 待建立 |
+| 感知与数据 | 相机与标定、数据采集/标注/清洗 | `perception-*`、`data-*` | 待建立 |
+| 平台与工具 | 仿真、测试台、CI、公共脚本与文档 | `tools-*`、`docs-*` | 待建立 |
+
+> 新仓库请按上面前缀命名（小写 + 短横线），并在下方「仓库索引」登记一行。
+
+## 仓库索引
+
+| 仓库 | 说明 | 负责方向 | 可见性 |
+| --- | --- | --- | --- |
+| [Kite](https://github.com/Kite-Robotics-Special-Interest-Group/Kite) | 端侧 VLA 模型与运行时（模型、量化、部署、ASR） | 模型与推理 | 私有 |
+
+## 通用约定（所有仓库适用）
+
+1. **每个仓库必须有 README**：目标、负责人、当前状态、快速开始、相关文档链接。
+2. **接口变更要跨组对齐**：机械接口尺寸、电控通信协议、模型输入输出契约——任何变更都要在 PR 里写清影响面，并请对应方向负责人评审。
+3. **Issue / PR 走模板**：组织级模板在本仓库提供（各仓库可覆盖）；流程为「分支 → PR → 至少 1 人 Approve + CI 绿勾 → Squash 合并」，不直接推 `main`。
+4. **大文件不进 Git**：模型权重、数据集、视频、超大 CAD/加工文件走网盘；小而必须版本化的二进制用 Git LFS。
+5. **硬件也版本化**：结构 / PCB / 固件 / 模型各自的发布用 tag + CHANGELOG 记录；同一阶段的三件套（结构版本、电控版本、固件/模型版本）在对应仓库 `docs/` 里维护一张**兼容性表**。
+6. **文档中文、代码标识符英文**；commit message 用 `feat:/fix:/docs:/refactor:/test:/chore:`。
+7. **默认私有**：公开任何内容（代码、图纸、数据、方案）前先问管理员。
 
 ## 快速开始
 
-```bash
-# 1) 获取代码（私有仓库：先让管理员邀请你的 GitHub 账号）
-git clone https://github.com/Kite-Robotics-Special-Interest-Group/Kite.git
-cd Kite
+| 你的方向 | 从这里开始 |
+| --- | --- |
+| 模型 / 推理 / 部署 | [Kite 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md)（从零到板端跑通） |
+| 电控 / 机械 / 感知 | 对应仓库建立后补「新人上手指南」；在此之前先读本页「通用约定」与 [CONTRIBUTING.md](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md) |
+| 工具 / 环境 | Docker 优先（跨设备一致）；Git 入门见 [Kite 的 Git 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/git-guide.md) |
 
-# 2) 容器内跑通（推荐：依赖与路径固定，换设备一致）
-docker build -t kite-dev:latest .
-docker run --rm -v "$PWD:/kite" kite-dev:latest python -m pytest -q
-```
+## 加入与分工
 
-新手请直接从 **[教程：从零到板端跑通](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md)** 开始。
+1. 联系管理员 [@muzirin](https://github.com/muzirin)，说明你的方向与可投入时间
+2. 加入对应的 GitHub Team（如 `model` / `ec` / `mech`），获得相应仓库权限
+3. 到对应仓库的 Issues 领任务（新手优先 `good first issue`）
+4. 第一次提交前读一遍 [CONTRIBUTING.md](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)
 
-## 关键文档
+## 组织维护
 
-- 教程（推荐入口）：[docs/tutorial.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md)
-- 环境搭建：[docs/setup.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/setup.md)、[容器化 docs/container.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/container.md)
-- 运行时：量化/编译 [docs/runtime-onnx.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/runtime-onnx.md)、板端部署 [docs/runtime-m50-deploy.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/runtime-m50-deploy.md)、ASR [docs/runtime-asr-qwen3.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/runtime-asr-qwen3.md)
-- 平台事实：[HardwareInfo.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/HardwareInfo.md)
-- 协作规范：[CONTRIBUTING.md](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/CONTRIBUTING.md)、[Git 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/git-guide.md)
-
-## 目标平台
-
-- **主机**：飞腾腾锐 D3000M（aarch64，8 核 FTC862，LPDDR5，12 GB）
-- **加速卡**：后摩漫界 M50（存算一体，160 TOPS INT8，PCIe Gen4 ×4，12–48 GB）
-- **软件栈**：Ubuntu 22.04 / Kylin V11、后摩驱动 V1.5.0 + Runtime SDK、llama.cpp、ONNX Runtime
-
-## 参与方式
-
-- 新手先读教程与协作流程，再从 Issue 里领任务（优先 `good first issue`）
-- 一切改动走「功能分支 → PR → 至少 1 人 Approve + CI 绿勾 → Squash 合并」，不要直接推 `main`
-- 大文件（权重、数据集、`.hmm`）走网盘，不进 Git
-- 组织管理员：[@muzirin](https://github.com/muzirin)
-
-## 致谢
-
-- [X-VLA](https://huggingface.co/2toINF/X-VLA-0.9B-WidowX)（Apache-2.0，上游开源模型）
-- [Qwen3-ASR](https://huggingface.co/ggml-org/Qwen3-ASR-0.6B-GGUF)（MIT，阿里 Qwen）
-- 后摩智能（M50 工具链与 Runtime SDK，由供方提供）
+- 管理员：[@muzirin](https://github.com/muzirin)
+- 组织级公共文件（本主页、Issue/PR 模板、协作规范、行为准则）都在 **[.github](https://github.com/Kite-Robotics-Special-Interest-Group/.github)** 仓库维护

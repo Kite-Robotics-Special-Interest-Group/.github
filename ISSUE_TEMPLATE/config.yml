@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 组织通用贡献规范（分支/PR/接口变更/大文件）
+    url: https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md
+    about: 动手前先读：流程、跨组接口变更、完成定义
+  - name: 模型与推理方向教程（Kite）
+    url: https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md
+    about: 模型、量化、端侧部署与 ASR 的从零教程
+  - name: 行为准则
+    url: https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CODE_OF_CONDUCT.md
+    about: 协作与评审的基本约定
