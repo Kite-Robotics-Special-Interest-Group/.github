@@ -43,6 +43,7 @@
 | **GitHub Desktop** | 可选（强烈建议新手） | 图形界面：克隆、提交、推送、建分支都能点 |
 | **VS Code** | 可选 | 看代码、改文档、看 diff |
 | Python / Docker | 按方向 | 模型/推理方向需要；电控/机械一般不需要 |
+| **WSL（可选）** | 需要用 Linux 工具时 | 在 Windows 里跑 Linux：安装、文件位置、代理与报错见 [WSL 入门](wsl.md) |
 
 安装后验证（开始菜单搜索 `PowerShell` 或 `Git Bash`）：
 

@@ -59,7 +59,7 @@
 | 模型 / 推理 / 部署 | [从零教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/tutorial.md) + [M0 复现清单](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/reproduce-m0.md) |
 | 电控 / 机械 / 感知 | 先读 [零基础入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/onboarding.md) 与 [贡献规范](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/CONTRIBUTING.md)；对应仓库建立后用 [复现文档模板](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-template.md) 写自己的上手指南 |
 | 要写文档 / 做交接 | [如何写复现文档](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/reproduction-guide.md)（含软件/电控/机械三类写法） |
-| 工具 / 环境 | Docker 优先（跨设备一致）；Git 入门见 [Kite 的 Git 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/git-guide.md) |
+| 工具 / 环境 | Docker 优先（跨设备一致）；Git 入门见 [Kite 的 Git 教程](https://github.com/Kite-Robotics-Special-Interest-Group/Kite/blob/main/docs/git-guide.md)；Windows 上要 Linux 工具见 [WSL 入门](https://github.com/Kite-Robotics-Special-Interest-Group/.github/blob/main/docs/wsl.md) |
 
 ## 加入与分工
 
